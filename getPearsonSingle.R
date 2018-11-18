@@ -1,0 +1,6 @@
+args=commandArgs(TRUE)
+library(data.table)
+d=fread(paste(args[1], "/group1.qassoc", sep=""))
+e=fread(paste(args[1], "/group2.qassoc", sep=""))
+d=merge(d,e, by="SNP")
+write.table(cor(d$T.x, d$T.y), "pearson.estimate", append=T, col.names=F, row.names=F, quote=F)
